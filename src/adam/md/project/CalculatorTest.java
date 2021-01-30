@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
 
@@ -22,5 +23,11 @@ class CalculatorTest {
         Calculator calculator = new Calculator();
         String result = calculator.processApplyBlock(input);
         assertEquals(result, "45");
+    }
+    @Test
+    void throwErrorWithMoreThan2InstructionsPerLine() {
+        List<String> input = Arrays.asList("multiply 9 add 5", "apply 5");
+        Calculator calculator = new Calculator();
+        assertThrows(Error.class, () -> calculator.processApplyBlock(input));
     }
 }
