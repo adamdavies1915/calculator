@@ -1,41 +1,41 @@
 package adam.md.project;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Calculator {
 
-    String processApplyBlock(List<String> linesToBeCalced){
-        Collections.reverse(linesToBeCalced);
-        String result = linesToBeCalced.stream()
-                .reduce("0", ((totalSoFar, line) -> {
-                        String[] splitLine = line.split(" ");
-                        if (splitLine.length > 2){
-                            throw new Error("Too many operations on one line");
-                        }
-                        return applyOperations(totalSoFar, line.split(" ")[0], line.split(" ")[1]);
-                        }
-                    ));
+    String processApplyBlock(final List<String> linesToBeCalcedWithApply ){
+        final String startingNumber = (linesToBeCalcedWithApply.get(linesToBeCalcedWithApply.size() - 1)).split(" ")[1];
+        final List<String> linesToBeCalced = linesToBeCalcedWithApply.subList(0, linesToBeCalcedWithApply.size() - 1);
 
-        return result.toString();
+        final String result = linesToBeCalced.stream()
+                .reduce(startingNumber, ((totalSoFar, line) -> {
+                    String[] splitLine = line.split(" ");
+                    try {
+                        return applyOperations(totalSoFar, splitLine[0],splitLine[1]);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                }
+                ));
+
+        return result;
     }
 
-    String applyOperations(String totalSoFarString, String operation, String operandString){
-        Integer operand = Integer.parseInt(operandString);
-        Integer totalSoFar = Integer.parseInt(totalSoFarString);
-        if (operation.equals("apply")){
-            return operand.toString();
-        }
+    String applyOperations(final String totalSoFarString, final String operation, final String operandString) throws Exception {
+        final Integer operand = Integer.parseInt(operandString);
+        final Integer totalSoFar = Integer.parseInt(totalSoFarString);
         if (operation.equals("add")) {
-            Integer result = (totalSoFar + operand);
+            final Integer result = (totalSoFar + operand);
             return result.toString();
         }
         if (operation.equals("multiply")){
-            Integer result = (totalSoFar * operand);
+            final Integer result = (totalSoFar * operand);
             return result.toString();
         }
         else {
-            throw new Error("Unsupported operation");
+            throw new Exception("Unsupported operation in line");
         }
     }
 
