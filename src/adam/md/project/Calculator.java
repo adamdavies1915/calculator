@@ -15,7 +15,6 @@ public class Calculator {
             }
             totalSoFar = applyOperations(totalSoFar, splitLine[0],splitLine[1]);
         }
-
         return totalSoFar;
     }
 
