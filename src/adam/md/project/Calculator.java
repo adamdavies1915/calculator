@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Calculator {
 
-
     String processApplyBlock(List<String> linesToBeCalced){
         Collections.reverse(linesToBeCalced);
         String result = linesToBeCalced.stream()

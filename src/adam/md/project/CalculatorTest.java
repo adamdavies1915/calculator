@@ -30,4 +30,10 @@ class CalculatorTest {
         Calculator calculator = new Calculator();
         assertThrows(Error.class, () -> calculator.processApplyBlock(input));
     }
+    @Test
+    void throwErrorWithInvalidOperation() {
+        List<String> input = Arrays.asList("sqaureroot 9 add 5", "apply 5");
+        Calculator calculator = new Calculator();
+        assertThrows(Error.class, () -> calculator.processApplyBlock(input));
+    }
 }
