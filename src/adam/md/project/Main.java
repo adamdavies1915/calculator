@@ -19,7 +19,7 @@ public class Main {
                 String result = calculator.processApplyBlock(list);
                 System.out.println(result);
             } catch (Exception e) {
-                System.out.println("There was a problem with your file");
+                System.out.println("Sorry something went wrong processing your file - please check and try again ");
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -30,7 +30,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator();
         Exception exception = assertThrows(Exception.class, () -> calculator.processApplyBlock(input));
 
-        String expectedMessage = "For input string";
+        String expectedMessage = "Too many operations on one lin";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -40,7 +40,7 @@ class CalculatorTest {
         Calculator calculator = new Calculator();
         Exception exception = assertThrows(Exception.class, () -> calculator.processApplyBlock(input));
 
-        String expectedMessage = "For input string";
+        String expectedMessage = "Unsupported operation in line";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
